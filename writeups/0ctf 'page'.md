@@ -1,0 +1,18 @@
+# 0ctf 'page'
+
+```shell
+➜  page ../../tools/libseccomp-master/tools/scmp_bpf_disasm < bpfs.dump
+ line  OP   JT   JF   K
+=================================
+ 0000: 0x20 0x00 0x00 0x00000004   ld  $data[4]
+ 0001: 0x15 0x01 0x00 0xc000003e   jeq 3221225534 true:0003 false:0002
+ 0002: 0x06 0x00 0x00 0x00000000   ret KILL
+ 0003: 0x20 0x00 0x00 0x00000000   ld  $data[0]
+ 0004: 0x15 0x00 0x01 0x0000003c   jeq 60   true:0005 false:0006
+ 0005: 0x06 0x00 0x00 0x7fff0000   ret ALLOW
+ 0006: 0x06 0x00 0x00 0x00000000   ret KILL
+
+```
+
+限制了只能执行 sys_exit 这个 syscall
+
